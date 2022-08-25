@@ -1,3 +1,4 @@
+// example whit Callback
 function requestHandler(req, res) {
   User.findById(req.userId, function (err, user) {
     if (err) {
@@ -21,4 +22,20 @@ function requestHandler(req, res) {
   });
 }
 
-// A esto se le conoce como "Callback Hell" y es una desventaja de los callbacks, ya que es un codigo difícil de leer y mantener.
+// Same example with Promise
+function requestHandler(req, res) {
+  User.findById(req.userId)
+    .then(function (user) {
+      Task.findById(user.taskId);
+    })
+    .then(function (tasks) {
+      tasks.complete = true;
+      return tasks.save();
+    })
+    .then(function () {
+      res.send("Tasks completed");
+    })
+    .catch(function (errors) {
+      res.send(errors);
+    });
+}
