@@ -39,3 +39,16 @@ function requestHandler(req, res) {
       res.send(errors);
     });
 }
+
+//Same example with Async/Await
+async function requestHandler(req, res) {
+  try {
+    const user = await User.findById(req.userId);
+    const tasks = await Tasks.findById(user.taskId);
+    tasks.completed = true;
+    await tasks.save();
+    res.send("Task completed");
+  } catch (errors) {
+    res.send(errors);
+  }
+}
