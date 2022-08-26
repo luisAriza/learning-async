@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/luisAriza/learning_async/issues"
   },
-  "homepage": "https://github.com/luisAriza/learning_async#readme"
+  "homepage": "https://github.com/luisAriza/learning_async#readme",
+  "dependencies": {
+    "xmlhttprequest": "^1.8.0"
+  }
 }
